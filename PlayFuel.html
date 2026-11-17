@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlayFuel: what to eat and drink for your sport</title>
+<meta name="description" content="Pick your sport, how long you play and your age. Get simple food and drink ideas for before, during and after, with hand measures and grams.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#12204A; --navy2:#223571; --bg:#F3F5FB; --card:#fff; --ink:#12204A; --muted:#566079; --line:#DCE1EE;
+  --orange:#F26B1D; --orange-d:#C24E0A; --orange-t:#FFF0E5;
+  --blue:#1F6FEB; --blue-t:#E8F1FF; --teal-d:#0B7A67; --teal-t:#E1F5F0; --amber-d:#8A5A00; --amber-t:#FFF1CC;
+  --focus:#1F6FEB;
+  --font:"Sora",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;min-height:100vh}
+.top{background:var(--navy);color:#fff}
+.top .in{max-width:680px;margin:0 auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.brand{font:inherit;font-weight:800;font-size:1.15rem;letter-spacing:-.01em;color:#fff;background:none;border:0;cursor:pointer;padding:4px 0}
+.brand span{color:var(--orange)}
+.dots{display:flex;gap:8px}
+.dots i{width:10px;height:10px;border-radius:50%;background:#3A4C85;transition:background .2s}
+.dots i.on{background:var(--orange)}
+.wrap{max-width:680px;margin:0 auto;padding:24px 20px 56px}
+h1{font-size:clamp(1.7rem,6vw,2.3rem);line-height:1.15;letter-spacing:-.02em;font-weight:800;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 22px}
+.intro{background:var(--navy);color:#fff;border-radius:20px;padding:22px;margin-bottom:30px}
+.intro h2{margin:0 0 8px;font-size:1.3rem;letter-spacing:-.01em}
+.intro p{margin:0 0 14px;color:#C9D2EE;font-size:.95rem}
+.intro ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.intro li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.intro li b{color:#fff}
+.intro .em{font-size:1.2rem;line-height:1.3}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.opt{font:inherit;color:inherit;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:18px 12px;cursor:pointer;text-align:center;font-weight:600;transition:border-color .15s,transform .15s}
+.opt:hover{border-color:var(--orange)}
+.opt:active{transform:scale(.97)}
+.opt .ic{display:block;font-size:2rem;margin-bottom:6px;line-height:1}
+.opt small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+.chips-col{display:grid;gap:12px}
+.chips-col .opt{padding:20px;font-size:1.05rem}
+button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.back{font:inherit;background:none;border:0;color:var(--muted);cursor:pointer;padding:8px 0;margin-top:20px}
+.back:hover{color:var(--ink)}
+.note{margin-top:28px;font-size:.82rem;color:var(--muted)}
+.banner{background:var(--orange-t);border-left:4px solid var(--orange);padding:12px 14px;border-radius:8px;font-size:.88rem;margin:0 0 22px}
+.measure{background:var(--blue-t);border-radius:12px;padding:10px 14px;font-size:.88rem;margin:0}
+.tune{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:14px;display:grid;gap:10px}
+.tune .heat{margin:0}
+.avoid{font-weight:600;padding:4px 4px 0}
+.avoid small{display:block;font-weight:400;color:var(--muted)}
+.av{font:inherit;font-size:.88rem;font-weight:600;border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:6px 14px;cursor:pointer;margin:8px 8px 0 0}
+.av[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.panel.tip{background:#ECEFF9}
+.panel.tip h3{color:var(--navy2)}
+.panel.tip ul{margin:6px 0 4px;padding-left:18px;font-size:.92rem}
+.hyd{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.hyd div{text-align:center;font-size:.75rem;font-weight:600}
+.hyd i{display:block;height:44px;border-radius:10px;margin-bottom:4px;border:1px solid rgba(0,0,0,.1)}
+.hero{background:var(--navy);color:#fff;border-radius:20px;padding:22px;margin-bottom:18px}
+.hero h1{color:#fff;font-size:clamp(1.5rem,5.5vw,2rem)}
+.hero .tags{margin:10px 0 12px}
+.tag{display:inline-block;font-size:.8rem;font-weight:600;background:var(--navy2);color:#fff;border-radius:99px;padding:3px 12px;margin:0 6px 6px 0}
+.hero p{margin:0;color:#C9D2EE;font-size:.95rem}
+.heat{font:inherit;display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;margin-bottom:18px;font-weight:600}
+.heat .sw{margin-left:auto;width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;flex:none;transition:background .2s}
+.heat .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.heat[aria-pressed="true"]{border-color:var(--orange);background:var(--orange-t)}
+.heat[aria-pressed="true"] .sw{background:var(--orange)}
+.heat[aria-pressed="true"] .sw::after{transform:translateX(18px)}
+.heat small{display:block;font-weight:400;color:var(--muted)}
+.timeline{position:relative;margin:26px 0 0;padding:0 0 0 30px;list-style:none}
+.timeline::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:3px;background:var(--line);border-radius:3px}
+.timeline>li{position:relative;padding-bottom:34px}
+.timeline>li::before{content:"";position:absolute;left:-30px;top:6px;width:19px;height:19px;border-radius:50%;background:var(--orange);border:4px solid var(--bg)}
+.timeline h2{margin:0;font-size:1.4rem;letter-spacing:-.01em}
+.when{color:var(--muted);font-size:.85rem;margin:0 0 12px}
+.panel{border-radius:16px;padding:14px 14px 10px;margin-bottom:12px}
+.panel h3{margin:0 0 4px;font-size:1rem}
+.panel.eat{background:var(--orange-t)}
+.panel.eat h3{color:var(--orange-d)}
+.panel.drink{background:var(--blue-t)}
+.panel.drink h3{color:var(--blue)}
+.hint{margin:0 0 8px;font-size:.8rem;color:var(--muted)}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:flex;gap:12px;background:#fff;border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.rows .em{font-size:1.5rem;line-height:1.2}
+.rows b{display:block;font-size:.95rem}
+.q{display:block;font-size:.85rem;color:var(--muted)}
+.cp{margin-top:4px}
+.cp span{display:inline-block;font-size:.75rem;font-weight:600;border-radius:99px;padding:1px 9px;margin:0 6px 2px 0}
+.cp .c{background:var(--amber-t);color:var(--amber-d)}
+.cp .p{background:var(--teal-t);color:var(--teal-d)}
+.sub-h{margin:10px 0 6px;font-size:.85rem;font-weight:600;color:var(--muted)}
+.none{margin:0 0 8px;font-size:.92rem;background:#fff;border-radius:12px;padding:10px 12px}
+.swap{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;font-size:.9rem}
+.swap b{display:block;margin-bottom:4px}
+.swap ul{margin:0;padding-left:18px}
+.why{display:grid;gap:12px;margin:8px 0 26px}
+.why div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.why h3{margin:0 0 4px;font-size:1rem}
+.why p{margin:0;font-size:.92rem;color:var(--muted)}
+.why .k{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+h2.sec{font-size:1.25rem;margin:30px 0 10px;letter-spacing:-.01em}
+.guide{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.guide div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:.88rem}
+.guide b{display:block}
+.guide span{color:var(--muted)}
+.restart{font:inherit;font-weight:700;background:var(--orange);color:#fff;border:0;border-radius:14px;padding:16px 24px;width:100%;cursor:pointer;margin-top:18px}
+.restart:hover{background:var(--orange-d)}
+.screen{animation:in .25s ease-out}
+@keyframes in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}.opt,.heat .sw,.heat .sw::after{transition:none}}
+@media (max-width:420px){.guide{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><button class="brand" id="home" type="button" aria-label="PlayFuel, back to start">Play<span>Fuel</span></button><div class="dots" id="dots" aria-hidden="true"></div></div></div>
+<div class="wrap">
+  <main id="app" aria-live="polite"></main>
+  <p class="note">General guidance, not medical advice. Numbers are rounded estimates and change with recipe and brand. If you have a health condition or allergies, or want a proper diet plan, talk to a doctor or a sports dietitian.</p>
+</div>
+
+<script>
+/* ---------- DATA: edit this part to add sports, foods or tips ---------- */
+const SPORTS = [
+  {id:"basketball", name:"Basketball", icon:"🏀", tip:"Basketball is stop-start, so use every break to sip. Outdoors in the sun or on a cool evening, your sweat loss changes: use the heat switch below."},
+  {id:"football",   name:"Football",   icon:"⚽", tip:"Lots of running. Drink at half-time and every stoppage, and use the heat switch if it’s a hot day."},
+  {id:"cricket",    name:"Cricket",    icon:"🏏", tip:"Cricket days are long. Small snacks and regular sips beat one big meal."},
+  {id:"badminton",  name:"Badminton",  icon:"🏸", tip:"Short, fast rallies. Sip between games and keep the pre-game meal light."},
+  {id:"running",    name:"Running",    icon:"🏃", tip:"Steady effort. Avoid heavy or oily food close to the run."},
+  {id:"cycling",    name:"Cycling",    icon:"🚴", tip:"On long rides it’s easy to forget to drink. Set a timer to sip and eat."},
+  {id:"swimming",   name:"Swimming",   icon:"🏊", tip:"You don’t notice sweat in water, but you still lose fluid. Keep a bottle on the pool deck."},
+  {id:"gym",        name:"Gym", icon:"🏋️", tip:"Treat it like any hard session: a little food before, protein and carbs after."}
+];
+const DURATIONS=[{id:"u1",name:"Under 1 hour"},{id:"1to2",name:"1 to 2 hours"},{id:"2to3",name:"2 to 3 hours"},{id:"3p",name:"3+ hours"}];
+const AGES=[{id:"u14",name:"Under 14"},{id:"14to17",name:"14 to 17"},{id:"18to30",name:"18 to 30"},{id:"30p",name:"30+"}];
+const DIETS=[{id:"veg",name:"Veg",icon:"🥦",sub:"Includes dairy"},{id:"nonveg",name:"Non-veg",icon:"🍗",sub:"Veg + eggs, chicken, fish"}];
+
+/* c = grams of carbs, p = grams of protein (rounded estimates for the amount shown) */
+const FOODS = {
+  meal: {
+    veg: [
+      {e:"🥣",n:"Poha with peanuts",q:"1 katori (about 150 g)",c:35,p:6},
+      {e:"🥣",n:"Oats with banana and milk",q:"½ cup oats (40 g) + 1 banana + 1 glass milk",c:60,p:12},
+      {e:"🍚",n:"Idli with sambar",q:"3 idlis + 1 katori sambar",c:35,p:10},
+      {e:"🍛",n:"Rice, dal and curd",q:"1 katori rice (150 g) + 1 katori dal + ½ katori curd",c:60,p:14}
+    ],
+    nonveg: [
+      {e:"🍛",n:"Rice, dal and boiled egg",q:"1 katori rice (150 g) + 1 katori dal + 1 egg",c:55,p:17},
+      {e:"🍳",n:"Egg bhurji with roti",q:"2-egg bhurji + 2 rotis",c:32,p:19},
+      {e:"🥪",n:"Chicken sandwich, whole wheat",q:"2 slices bread + palm-sized chicken (about 60 g)",c:25,p:22},
+      {e:"🍛",n:"Rice with light chicken curry",q:"1 katori rice (150 g) + 1 katori curry (about 100 g chicken)",c:45,p:28}
+    ]
+  },
+  snack: [
+    {e:"🍌",n:"Banana",q:"1 medium (fist-sized)",c:27,p:1},
+    {e:"🌴",n:"Dates",q:"3 dates (about 25 g)",c:20,p:1},
+    {e:"🍎",n:"Apple or orange",q:"1 medium (fist-sized)",c:20,p:1},
+    {e:"🥪",n:"Peanut butter bread",q:"2 slices whole wheat bread + 1 tbsp peanut butter",c:27,p:10},
+    {e:"🥣",n:"Peanut butter oats",q:"½ cup oats (40 g) + 1 tbsp peanut butter, made with water or milk",c:30,p:11}
+  ],
+  during: [
+    {e:"🍌",n:"Banana",q:"1 medium (fist-sized)",c:27,p:1},
+    {e:"🌴",n:"Dates or raisins",q:"1 cupped handful (about 30 g)",c:22,p:1},
+    {e:"🥜",n:"Peanut-jaggery chikki",q:"1 small piece (about 20 g)",c:12,p:3}
+  ],
+  after: {
+    veg: [
+      {e:"🧀",n:"Paneer bhurji with roti",q:"palm-sized paneer (about 100 g) + 2 rotis",c:33,p:24},
+      {e:"🍛",n:"Dal rice with a little ghee",q:"1 katori rice (150 g) + 1 katori dal + 1 tsp ghee",c:55,p:11},
+      {e:"🥗",n:"Sprouts chaat",q:"1 katori (about 100 g)",c:15,p:7},
+      {e:"🥪",n:"Peanut butter on whole wheat bread",q:"2 slices + 2 tbsp peanut butter",c:30,p:14},
+      {e:"🥛",n:"Curd or lassi with a banana",q:"1 katori curd (150 g) + 1 banana",c:33,p:6}
+    ],
+    nonveg: [
+      {e:"🍳",n:"Boiled eggs with roti",q:"2 eggs + 2 rotis",c:31,p:18},
+      {e:"🍗",n:"Grilled chicken or fish with rice",q:"palm-sized (about 100 g) + 1 katori rice (150 g)",c:40,p:28},
+      {e:"🍛",n:"Chicken curry, roti and salad",q:"1 katori curry + 2 rotis + salad",c:35,p:30},
+      {e:"🥪",n:"Egg sandwich, whole wheat",q:"2 slices bread + 2 eggs",c:25,p:18}
+    ]
+  }
+};
+const DR = {
+  water:{e:"💧",n:"Water"},
+  ors:{e:"🧂",n:"ORS (electrolyte powder)",q:"1 sachet, mixed with the amount of water on the packet"},
+  nimbu:{e:"🍋",n:"Nimbu pani with salt",q:"1 glass (250 ml) + a pinch of salt (¼ tsp) + 1 tsp sugar",c:5},
+  nimbuKid:{e:"🍋",n:"Light nimbu pani",q:"½ glass (125 ml) in water, tiny pinch of salt",c:3},
+  coconut:{e:"🥥",n:"Coconut water",q:"1 glass (250 ml)",c:12},
+  sports:{e:"🥤",n:"Sports drink (like Gatorade)",q:"1 bottle (500 ml)",c:30},
+  chaas:{e:"🥛",n:"Chaas (buttermilk)",q:"1 glass (250 ml)",c:8,p:3}
+};
+const SWAPS = {
+  before:["White bread → whole wheat bread or oats","Chocolate bar → banana or dates (one small piece is fine, a big bar is not)","Samosa or puri → idli, upma or boiled corn"],
+  after:["Cold drink or packaged juice → coconut water or chaas","Deep-fried snacks → grilled, roasted or boiled","A lot of ghee right before play → 1 tsp with your after-play meal"]
+};
+const GUIDE = [
+  ["Katori","small bowl, about 150 ml"],["Fist","1 katori of rice, or 1 medium fruit"],
+  ["Palm","palm-sized, finger-thick: about 100 g chicken, fish or paneer"],["Cupped hand","about 30 g nuts, dates or raisins"],
+  ["Thumb tip","about 1 tsp (5 g) of ghee"],["Glass","about 250 ml"],
+  ["Roti","medium, palm to wrist size: about 40 g"],["Big gulp","about 25 to 30 ml"]
+];
+
+const NOMATCH={gym:1};                // sports where the match-day switch is hidden
+const AVOID=[["peanuts","Peanuts"],["dairy","Dairy"],["eggs","Eggs"],["gluten","Gluten"]];
+const TAGS={ // allergen tags by food name (oats are tagged gluten because of cross-contamination)
+  "Poha with peanuts":["peanuts"],"Oats with banana and milk":["dairy","gluten"],"Rice, dal and curd":["dairy"],
+  "Rice, dal and boiled egg":["eggs"],"Egg bhurji with roti":["eggs","gluten"],"Chicken sandwich, whole wheat":["gluten"],
+  "Peanut butter bread":["peanuts","gluten"],"Peanut butter oats":["peanuts","gluten"],"Peanut-jaggery chikki":["peanuts"],
+  "Paneer bhurji with roti":["dairy","gluten"],"Dal rice with a little ghee":["dairy"],"Peanut butter on whole wheat bread":["peanuts","gluten"],
+  "Curd or lassi with a banana":["dairy"],"Boiled eggs with roti":["eggs","gluten"],"Chicken curry, roti and salad":["gluten"],
+  "Egg sandwich, whole wheat":["eggs","gluten"],"Chaas (buttermilk)":["dairy"]
+};
+const HYD=[["#FBF8DC","Great"],["#F6EEA4","Good"],["#F0DD6C","Okay"],["#E5C23E","Drink more"],["#D39A1E","Drink now"]];
+const FULLMEAL={gym:1,swimming:1};   // sports where a fuller meal before makes sense
+const NOHEAT={gym:1,swimming:1};     // sports where the sun/heat switch is hidden
+
+/* ---------- PLAN LOGIC ---------- */
+function buildPlan(a){
+  const kid=a.age==="u14", teen=a.age==="14to17", heat=!!a.heat&&!NOHEAT[a.sport], match=!!a.match&&!NOMATCH[a.sport];
+  const long=a.duration==="2to3"||a.duration==="3p", mid=a.duration==="1to2";
+  const needSalt=a.duration!=="u1"||heat;
+
+  const beforeDrink=[{...DR.water,q:kid?"1 to 2 glasses (250 to 500 ml) over the 2 hours before":"2 glasses (400 to 500 ml) over the 2 hours before"}];
+  if(heat) beforeDrink.push({e:"☀️",n:"One extra glass, 15 minutes before",q:"1 glass (250 ml), because it’s hot out"});
+
+  const every=heat?"10 to 15":"15 to 20";
+  const duringDrink=[{...DR.water,q:(kid?"100 to 150 ml (3 to 4 big gulps)":"150 to 250 ml (6 to 8 big gulps, about ¾ glass)")+" every "+every+" minutes"}];
+  if(needSalt){
+    if(kid) duringDrink.push(DR.coconut,DR.nimbuKid);
+    else duringDrink.push(DR.ors,DR.nimbu,DR.coconut,DR.sports);
+  }
+  let duringFood=[], duringNote="Nothing needed to eat for a session this short.";
+  if(mid){duringFood=[FOODS.during[0]];duringNote="Optional: a banana halfway if you feel your energy dip.";}
+  if(long){duringFood=FOODS.during;duringNote=kid?"Small snacks when you take a break.":"Something small about every 45 minutes. Many adults aim for roughly 30 to 60 g of carbs per hour on long sessions.";}
+  if(a.duration==="3p") duringNote+=" Refill your bottle before it runs out.";
+
+  const afterDrink=[
+    {...DR.water,q:"1 to 2 glasses (250 to 500 ml) soon after, more through the evening"},
+    DR.coconut,DR.chaas
+  ];
+  if(heat||long) afterDrink.push(DR.ors);
+
+  const notes=[];
+  if(kid) notes.push("Younger players: portions here are for adults, so eat about half and ask a parent or coach. Skip energy drinks and caffeine.");
+  if(teen) notes.push("Skip energy drinks and caffeine at your age, and keep eating regular full meals.");
+  if(a.age==="30p") notes.push("Drink even if you aren’t thirsty. If you have blood pressure or other health issues, check with your doctor before adding extra salt.");
+
+  const mt=match?{
+    before:["Eat only foods you already know suit you. No new foods or drinks today.","Don’t skip your usual breakfast or meal.","Sip water through the morning so you arrive well hydrated."],
+    during:["Drink at every break, timeout or change of ends.","Playing more than one match? Have a banana or dates and a drink between matches."],
+    after:["Eat and drink within an hour, especially if you play again soon.","Rest and sleep well. Recovery isn’t only food."]
+  }:null;
+  return {mt,beforeDrink,duringDrink,duringFood,duringNote,afterDrink,
+    afterNote:kid?"A normal balanced meal is great. Include some protein: dal, curd, milk, egg or paneer.":"Within an hour of finishing, eat carbs plus protein. About 20 g of protein is a common target for adults.",notes};
+}
+
+/* ---------- UI ---------- */
+const STEPS=["sport","duration","age","diet"];
+let step=0, ans={}, locked=false;
+const app=document.getElementById("app"), dotsEl=document.getElementById("dots");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function setDots(){dotsEl.innerHTML=STEPS.map((_,i)=>"<i class='"+(i<=step?"on":"")+"'></i>").join("");}
+function rows(items){
+  items=items.filter(ok);
+  if(!items.length) return "<p class='none'>Nothing here fits what you chose to avoid. A doctor or dietitian can suggest options.</p>";
+  return "<ul class='rows'>"+items.map(i=>
+    "<li><span class='em' aria-hidden='true'>"+i.e+"</span><div><b>"+esc(i.n)+"</b>"+(i.q?"<span class='q'>"+esc(i.q)+"</span>":"")+
+    ((i.c!=null||i.p!=null)?"<div class='cp'>"+(i.c!=null?"<span class='c'>≈ "+i.c+" g carbs</span>":"")+(i.p!=null?"<span class='p'>≈ "+i.p+" g protein</span>":"")+"</div>":"")+
+    "</div></li>").join("")+"</ul>";
+}
+const ul=a=>"<ul>"+a.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>";
+const matchPanel=(p,w)=>p.mt?panel("tip","⭐ Match day",ul(p.mt[w])):"";
+const ok=i=>!(TAGS[i.n]||[]).some(x=>ans.avoid&&ans.avoid[x]);
+const panel=(k,t,inner)=>"<div class='panel "+k+"'><h3>"+t+"</h3>"+inner+"</div>";
+const swaps=a=>"<div class='swap'><b>Healthier swaps</b><ul>"+a.filter(x=>!(ans.avoid&&ans.avoid.dairy&&/ghee/.test(x))).map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul></div>";
+
+function render(){
+  locked=false;
+  // never show a screen before its earlier questions are answered
+  const first=STEPS.findIndex(k=>!ans[k]);
+  if(first!==-1&&step>first) step=first;
+  setDots();
+  if(step>=STEPS.length) return renderResult(true);
+  const k=STEPS[step]; let html="";
+  if(k==="sport"){
+    html="<div class='intro'><h2>Food is part of your training</h2><p>What you eat and drink around play decides how much energy you start with, how long you last, and how fast your body recovers for next time.</p><ul>"+
+      "<li><span class='em'>⚡</span><span><b>Before:</b> fills your energy tank so you start strong.</span></li>"+
+      "<li><span class='em'>💧</span><span><b>During:</b> replaces sweat and keeps you going.</span></li>"+
+      "<li><span class='em'>🛠️</span><span><b>After:</b> repairs muscles and refuels for the next session.</span></li></ul></div>"+
+      "<h1>What do you play?</h1><p class='sub'>Pick one. Takes four taps.</p><div class='grid'>"+
+      SPORTS.map(s=>"<button class='opt' data-v='"+s.id+"'><span class='ic'>"+s.icon+"</span>"+esc(s.name)+"</button>").join("")+"</div>";
+  } else if(k==="duration"){
+    html="<h1>How long will you play?</h1><p class='sub'>Include warm-up and breaks.</p><div class='chips-col'>"+DURATIONS.map(d=>"<button class='opt' data-v='"+d.id+"'>"+esc(d.name)+"</button>").join("")+"</div>";
+  } else if(k==="age"){
+    html="<h1>Your age group?</h1><p class='sub'>Needs are a bit different for younger players.</p><div class='chips-col'>"+AGES.map(d=>"<button class='opt' data-v='"+d.id+"'>"+esc(d.name)+"</button>").join("")+"</div>";
+  } else {
+    html="<h1>Veg or non-veg?</h1><p class='sub'>We’ll suggest foods you actually eat.</p><div class='grid'>"+DIETS.map(d=>"<button class='opt' data-v='"+d.id+"'><span class='ic'>"+d.icon+"</span>"+esc(d.name)+"<small>"+esc(d.sub)+"</small></button>").join("")+"</div>";
+  }
+  if(step>0) html+="<button class='back' id='back'>Back</button>";
+  app.innerHTML="<section class='screen'>"+html+"</section>";
+  app.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+    if(locked) return;   // ignore double taps
+    locked=true;
+    ans[k]=b.dataset.v;
+    setTimeout(()=>{step++;render();window.scrollTo(0,0);},140);
+  }));
+  const back=document.getElementById("back"); if(back) back.addEventListener("click",()=>{step--;render();});
+}
+
+function renderResult(scroll){
+  const sport=SPORTS.find(s=>s.id===ans.sport), dur=DURATIONS.find(s=>s.id===ans.duration), age=AGES.find(s=>s.id===ans.age), diet=DIETS.find(s=>s.id===ans.diet);
+  const p=buildPlan(ans);
+  const anyAvoid=AVOID.some(a=>ans.avoid&&ans.avoid[a[0]]);
+  const tune="<div class='tune'>"+
+    (NOHEAT[ans.sport]?"":"<button class='heat' id='heat' aria-pressed='"+(!!ans.heat)+"'><span>☀️ Playing in the sun or heat?<small>Turn on for extra drink advice</small></span><span class='sw'></span></button>")+
+    (NOMATCH[ans.sport]?"":"<button class='heat' id='match' aria-pressed='"+(!!ans.match)+"'><span>⭐ Match day or competition?<small>Turn on for extra tips</small></span><span class='sw'></span></button>")+
+    "<div class='avoid'>🚫 Anything to avoid?<small>Tap to remove those foods from the lists.</small><div>"+
+      AVOID.map(a=>"<button class='av' id='av-"+a[0]+"' data-k='"+a[0]+"' aria-pressed='"+(!!(ans.avoid&&ans.avoid[a[0]]))+"'>"+a[1]+"</button>").join("")+"</div></div>"+
+    (anyAvoid?"<p class='hint' style='margin:0 4px'>Check food labels. With a serious allergy, ask your doctor. Oats can contain gluten unless labelled gluten-free.</p>":"")+
+    "</div>";
+  const html="<section class='screen'>"+
+  "<div class='hero'><h1>"+sport.icon+" Your plan for "+esc(sport.name.toLowerCase())+"</h1><div class='tags'><span class='tag'>"+esc(dur.name)+"</span><span class='tag'>Age "+esc(age.name.toLowerCase())+"</span><span class='tag'>"+esc(diet.name)+"</span></div><p>"+esc(sport.tip)+"</p></div>"+
+  "<p class='banner'>General guidance, not medical advice. This is a simple starting point, not a diet plan.</p>"+
+  tune+
+  "<p class='measure'>📏 Amounts use katori, fist and palm, with grams where useful. <a href='#measure'>See the measure guide</a></p>"+
+  "<ol class='timeline'>"+
+  "<li><h2>Before</h2><p class='when'>"+(FULLMEAL[ans.sport]?"Meal 2 to 3 hours ahead, light snack 30 to 60 minutes ahead":"Usual meal 2+ hours ahead, light snack 30 to 60 minutes ahead")+"</p>"+
+    panel("eat","🍽️ Eat",(FULLMEAL[ans.sport]?"<p class='hint'>Pick one meal</p>"+rows(FOODS.meal[ans.diet])+"<p class='sub-h'>Closer to play: pick one light snack</p>":"<p class='hint'>Have your usual meal at least 2 hours before. Then, 30 to 60 minutes before you start (or before you leave home), pick one light snack.</p>")+rows(FOODS.snack))+
+    panel("drink","💧 Drink",rows(p.beforeDrink))+swaps(SWAPS.before)+matchPanel(p,"before")+"</li>"+
+  "<li><h2>During</h2><p class='when'>While you play</p>"+
+    panel("drink","💧 Drink",(p.duringDrink.length>1?"<p class='hint'>Water for sure. Pick one salt drink if you’re playing a while or in heat. No sports drink? ORS or nimbu pani works and costs much less.</p>":"")+rows(p.duringDrink))+
+    panel("eat","🍽️ Eat",(p.duringFood.length?"<p class='hint'>"+esc(p.duringNote)+"</p>"+rows(p.duringFood):"<p class='none'>"+esc(p.duringNote)+"</p>"))+matchPanel(p,"during")+"</li>"+
+  "<li><h2>After</h2><p class='when'>Within an hour of finishing</p>"+
+    panel("eat","🍽️ Eat","<p class='hint'>"+esc(p.afterNote)+" Pick one.</p>"+rows(FOODS.after[ans.diet]))+
+    panel("drink","💧 Drink","<p class='hint'>Aim for light yellow urine. See the hydration check below.</p>"+rows(p.afterDrink))+swaps(SWAPS.after)+matchPanel(p,"after")+"</li>"+
+  "</ol>"+
+  (p.notes.length?"<p class='banner'>"+p.notes.map(esc).join("<br>")+"</p>":"")+
+  "<h2 class='sec'>Why this works</h2><div class='why'>"+
+    "<div><h3><span class='k' style='background:#E0A100'></span>Carbs are your fuel</h3><p>Carbs are your muscles’ main fuel. Your body stores them as glycogen, and hard play drains the store. Running low feels like heavy legs, slow reactions and a foggy head. Eating carbs before and during tops it up, and after play they refill it.</p></div>"+
+    "<div><h3><span class='k' style='background:#0B9C82'></span>Protein is your repair kit</h3><p>Hard play causes tiny tears in your muscles. Protein supplies the building blocks to repair them, so you recover faster and get stronger. Spread it across the day, not only after play.</p></div>"+
+    "<div><h3><span class='k' style='background:#1F6FEB'></span>Fluids and salt keep you going</h3><p>Sweat takes out water and salt. Even a small drop in body water makes you tire sooner, think slower and cramp more. Sipping early works better than catching up once you’re thirsty.</p></div></div>"+
+  "<h2 class='sec' id='hydration'>Hydration check</h2><p class='sub' style='margin-bottom:12px'>Look at your urine colour before and after you play. Light yellow is the goal.</p><div class='hyd'>"+HYD.map(h=>"<div><i style='background:"+h[0]+"'></i>"+esc(h[1])+"</div>").join("")+"</div><p class='hint' style='margin-top:10px'>Some vitamins and foods change the colour. If it stays dark for days or you feel unwell, see a doctor.</p>"+
+  "<h2 class='sec' id='measure'>Measure without a scale</h2><div class='guide'>"+GUIDE.map(g=>"<div><b>"+esc(g[0])+"</b><span>"+esc(g[1])+"</span></div>").join("")+"</div>"+
+  "<button class='restart' id='restart'>Start over</button></section>";
+  app.innerHTML=html;
+  document.getElementById("restart").addEventListener("click",()=>{step=0;ans={};render();window.scrollTo(0,0);});
+  const re=id=>{const y=window.scrollY;renderResult(false);window.scrollTo(0,y);const el=document.getElementById(id);if(el&&el.focus)el.focus({preventScroll:true});};
+  const hb=document.getElementById("heat"); if(hb) hb.addEventListener("click",()=>{ans.heat=!ans.heat;re("heat");});
+  const mb=document.getElementById("match"); if(mb) mb.addEventListener("click",()=>{ans.match=!ans.match;re("match");});
+  app.querySelectorAll(".av").forEach(b=>b.addEventListener("click",()=>{ans.avoid=ans.avoid||{};ans.avoid[b.dataset.k]=!ans.avoid[b.dataset.k];re("av-"+b.dataset.k);}));
+  if(scroll) window.scrollTo(0,0);
+}
+document.getElementById("home").addEventListener("click",()=>{step=0;ans={};render();window.scrollTo(0,0);});
+render();
+</script>
+</body>
+</html>
